@@ -2,7 +2,7 @@
 include("database.php");
 
 
-// Process the form submission
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_SPECIAL_CHARS);
     $number = filter_input(INPUT_POST, "number", FILTER_SANITIZE_SPECIAL_CHARS);
@@ -18,9 +18,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } elseif (empty($address)) {
         $error_message = "Please enter your address.";
     } else {
-        // Use prepared statements for security
+        
         $stmt = $conn->prepare("INSERT INTO `contact` (`name`, `number`, `email`, `address`) VALUES (?, ?, ?, ?)");
-        $stmt->bind_param("ssss", $name, $number, $email, $address);
+        
 
         if ($stmt->execute()) {
             $success_message = "User registered successfully!"."<br>";
@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-// Close the connection at the end
+
 mysqli_close($conn);
 ?>
 
@@ -140,7 +140,7 @@ mysqli_close($conn);
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script src="script.js"></script>
 
-<!-- JavaScript for Dynamic Copyright Year -->
+
 <script>
     document.getElementById("current-year").textContent = new Date().getFullYear();
 </script>
